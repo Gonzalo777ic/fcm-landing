@@ -7,7 +7,6 @@ import { HiMenu, HiX, HiChevronDown } from "react-icons/hi";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const productLinks = [
@@ -32,14 +31,10 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-[#002B36] w-full z-[100] sticky top-0 border-none shadow-none h-20 flex items-center">
-        {" "}
-        <div className="container mx-auto px-4 md:px-8 py-3 flex justify-between items-center">
+      <nav className="bg-[#002B36] w-full z-[100] sticky top-0 border-none shadow-none h-20 flex items-center overflow-visible">
+        <div className="container mx-auto px-4 md:px-8 py-3 flex justify-between items-center overflow-visible">
           {/* Logo Principal */}
-          <Link
-            href="/"
-            className="flex items-center hover:opacity-80 transition-opacity"
-          >
+          <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
             <Image
               src="/images/logo_blanco.png"
               alt="FCM Logo"
@@ -58,15 +53,15 @@ export default function Navbar() {
                   href={link.href}
                   className="hover:text-fcm-yellow transition-colors flex items-center gap-1 uppercase"
                 >
-                  {link.name}{" "}
+                  {link.name}
                   {link.dropdown && (
-                    <HiChevronDown className="text-fcm-yellow group-hover:rotate-180 transition-transform" />
+                    <HiChevronDown className="ml-1 text-fcm-yellow group-hover:rotate-180 transition-transform" />
                   )}
                 </Link>
 
                 {/* Dropdown Menu Desktop */}
                 {link.dropdown && (
-                  <div className="absolute top-full left-0 w-52 bg-[#002B36] border border-white/10 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 rounded-sm overflow-hidden z-[110]">
+                  <div className="absolute top-full left-0 w-52 bg-[#002B36] border border-white/10 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 rounded-sm overflow-hidden z-[999]">
                     {link.dropdown.map((sub) => (
                       <Link
                         key={sub.name}
@@ -91,10 +86,7 @@ export default function Navbar() {
 
           {/* Mobile Toggle Button */}
           <div className="lg:hidden flex items-center">
-            <button
-              onClick={toggleMenu}
-              className="text-white p-2 hover:bg-white/5 rounded-full transition-colors"
-            >
+            <button onClick={toggleMenu} className="text-white p-2 hover:bg-white/5 rounded-full transition-colors">
               <HiMenu size={32} />
             </button>
           </div>
@@ -102,58 +94,33 @@ export default function Navbar() {
       </nav>
 
       {/* --- SIDEBAR MOBILE --- */}
-      {/* Background Overlay */}
-      <div
+      <div 
         className={`fixed inset-0 bg-black/60 z-[110] transition-opacity duration-300 lg:hidden ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
         onClick={toggleMenu}
       />
 
-      {/* Sidebar Content */}
-      <div
-        className={`
-        fixed top-0 right-0 h-full w-[80%] max-w-sm bg-[#002B36] z-[120] transform transition-transform duration-500 ease-in-out lg:hidden border-l border-white/10 shadow-2xl
-        ${isOpen ? "translate-x-0" : "translate-x-full"}
-      `}
-      >
-        {/* Sidebar Header */}
+      <div className={`fixed top-0 right-0 h-full w-[80%] max-w-sm bg-[#002B36] z-[120] transform transition-transform duration-500 ease-in-out lg:hidden border-l border-white/10 shadow-2xl ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
         <div className="flex justify-between items-center p-6 border-b border-white/10 bg-black/10">
-          <Image
-            src="/images/logo_blanco.png"
-            alt="FCM Logo"
-            width={110}
-            height={40}
-            className="object-contain"
-          />
-          <button
-            onClick={toggleMenu}
-            className="text-fcm-yellow p-2 hover:bg-white/5 rounded-full transition-colors"
-          >
+          <Image src="/images/logo_blanco.png" alt="FCM Logo" width={110} height={40} className="object-contain" />
+          <button onClick={toggleMenu} className="text-fcm-yellow p-2 hover:bg-white/5 rounded-full transition-colors">
             <HiX size={32} />
           </button>
         </div>
 
-        {/* Sidebar Navigation Links */}
         <div className="flex flex-col p-8 space-y-6 overflow-y-auto h-[calc(100%-80px)]">
           {navLinks.map((link) => (
             <div key={link.name} className="flex flex-col space-y-4">
-              <Link
-                href={link.href}
+              <Link 
+                href={link.href} 
                 onClick={() => !link.dropdown && setIsOpen(false)}
                 className="text-white text-lg font-black tracking-widest hover:text-fcm-yellow transition-colors border-b border-white/5 pb-2 uppercase"
               >
                 {link.name}
               </Link>
-
-              {/* Sub-enlaces en móvil */}
               {link.dropdown && (
                 <div className="pl-4 flex flex-col space-y-3">
                   {link.dropdown.map((sub) => (
-                    <Link
-                      key={sub.name}
-                      href={sub.href}
-                      onClick={() => setIsOpen(false)}
-                      className="text-white/60 text-sm font-bold hover:text-fcm-yellow uppercase tracking-wider border-l-2 border-fcm-yellow/30 pl-4"
-                    >
+                    <Link key={sub.name} href={sub.href} onClick={() => setIsOpen(false)} className="text-white/60 text-sm font-bold hover:text-fcm-yellow uppercase tracking-wider border-l-2 border-fcm-yellow/30 pl-4">
                       {sub.name}
                     </Link>
                   ))}
@@ -161,12 +128,7 @@ export default function Navbar() {
               )}
             </div>
           ))}
-
-          <Link
-            href="/contacto"
-            onClick={() => setIsOpen(false)}
-            className="bg-fcm-yellow text-fcm-blue px-6 py-4 rounded-sm text-center font-black uppercase tracking-widest mt-8 shadow-xl active:scale-95"
-          >
+          <Link href="/contacto" onClick={() => setIsOpen(false)} className="bg-fcm-yellow text-fcm-blue px-6 py-4 rounded-sm text-center font-black uppercase tracking-widest mt-8 shadow-xl active:scale-95">
             CONTÁCTANOS
           </Link>
         </div>

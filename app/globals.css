@@ -41,7 +41,18 @@ nav + section, nav + div {
   margin-top: 0 !important;
 }
 
-/* Elimina el borde fantasma que Next.js a veces inyecta en elementos sticky */
-.sticky {
-  clip-path: inset(0 0 -10px 0); /* Corta cualquier borde que se asome por debajo */
+/* app/globals.css */
+
+/* Evita que el dropdown sea tapado por el Hero */
+/* app/globals.css */
+
+/* Asegura que el Nav no recorte a sus hijos (dropdowns) */
+nav {
+  isolation: isolate;
+  overflow: visible !important;
+}
+
+/* Forzar que el siguiente elemento (Hero) no tenga espacio extra */
+nav + * {
+  margin-top: 0 !important;
 }

@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
+@theme {
+  /* Colores Corporativos FCM */
+  --color-fcm-blue: #002B36;
+  --color-fcm-yellow: #F4B41A;
+  
+  /* Animación Ken Burns */
+  --animate-kenburns: kenburns 20s ease-out infinite alternate;
+
+  @keyframes kenburns {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {

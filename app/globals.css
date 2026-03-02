@@ -34,3 +34,14 @@ body {
     to { transform: translateX(-50%); }
   }
 }
+
+
+/* Fuerza a que no haya separación entre el nav y el siguiente elemento */
+nav + section, nav + div {
+  margin-top: 0 !important;
+}
+
+/* Elimina el borde fantasma que Next.js a veces inyecta en elementos sticky */
+.sticky {
+  clip-path: inset(0 0 -10px 0); /* Corta cualquier borde que se asome por debajo */
+}

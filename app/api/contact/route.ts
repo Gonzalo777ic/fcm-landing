@@ -1,15 +1,22 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req: Request) {
+  // Movemos la inicialización adentro para que solo ocurra cuando se llama a la API
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
   try {
     const { nombre, empresa, email, celular, mensaje } = await req.json();
 
+    // Validación básica de la clave para evitar que el servidor explote
+    if (!process.env.RESEND_API_KEY) {
+      console.error("Falta RESEND_API_KEY en las variables de entorno");
+      return NextResponse.json({ error: 'Configuración de correo incompleta' }, { status: 500 });
+    }
+
     await resend.emails.send({
-      from: 'Web FCM <onboarding@resend.dev>', // Luego podrás usar tu propio dominio
-      to: ['gonzaloisique777@gmail.com'], // EL CORREO DONDE QUIERES RECIBIRLO
+      from: 'Web FCM <onboarding@resend.dev>',
+      to: ['gonzaloisique777@gmail.com'],
       subject: `Nuevo mensaje de: ${nombre}`,
       replyTo: email,
       html: `

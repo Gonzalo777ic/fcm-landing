@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-
+import { useState, useEffect } 
+from "react";
+import Link from "next/link";
 const backgroundImages = [
   { src: "/images/tunel.png", alt: "Operaciones en Túnel FCM" },
   { src: "/images/casco.png", alt: "Personal de Seguridad FCM" },
@@ -52,9 +53,11 @@ export default function Hero() {
           <p className="text-lg md:text-xl mb-10 font-normal max-w-xl text-white/90">
             Transformamos materiales para crear soluciones de alto impacto.
           </p>
-          <button className="bg-[#F4B41A] text-[#002B36] px-10 py-3.5 rounded-sm font-bold text-sm hover:bg-[#E5A300] transition-all tracking-widest uppercase">
-            NOSOTROS
-          </button>
+          <Link href="/nosotros">
+  <button className="bg-fcm-yellow text-fcm-blue px-10 py-3.5 rounded-sm font-bold text-sm hover:bg-[#E5A300] transition-all tracking-widest uppercase">
+    NOSOTROS
+  </button>
+</Link>
         </div>
       </div>
     </section>

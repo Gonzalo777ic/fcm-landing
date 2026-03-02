@@ -1,5 +1,6 @@
 'use client';
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
   {
@@ -8,7 +9,7 @@ const faqs = [
   },
   {
     question: "¿Qué tipo de fibra debo utilizar para mi proyecto?",
-    answer: "Para control de fisuras plásticas o acabados finos, se utilizan fibras micro como PS0P. Para refuerzo estructural (shotcrete, túneles, pavimentos), se recomiendan las fibras macro como TP18, PS50 o PS60."
+    answer: "Para control de fisuras plásticas o acabados finos, se utilizan fibras micro como TP18. Para refuerzo estructural (shotcrete, túneles, pavimentos), se recomiendan las fibras macro como PS50 o PS60."
   },
   {
     question: "¿Las fibras afectan el proceso de mezclado o el acabado del concreto?",
@@ -24,42 +25,70 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="bg-[#F2F2F2] py-20">
-      <div className="container mx-auto px-6 md:px-12 flex flex-col lg:flex-row gap-12">
+    <section className="bg-white py-24 overflow-hidden">
+      <div className="container mx-auto px-6 md:px-12 flex flex-col lg:flex-row gap-20">
         
-        {/* Título Izquierda */}
+        {/* Título Izquierda - Estilo Industrial */}
         <div className="lg:w-1/3">
-          <h3 className="text-fcm-yellow font-bold tracking-widest text-sm mb-2 uppercase">
-            Más sobre nuestros productos
-          </h3>
-          <h2 className="text-fcm-blue text-4xl font-bold uppercase leading-tight">
-            Preguntas <br /> frecuentes
-          </h2>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-fcm-yellow font-black tracking-[0.4em] text-[10px] mb-4 uppercase">
+              Soporte y Conocimiento
+            </h3>
+            <h2 className="text-fcm-blue text-5xl md:text-7xl font-black uppercase leading-[0.85] tracking-tighter">
+              Preguntas <br /> <span className="text-gray-300">Frecuentes</span>
+            </h2>
+            <div className="w-16 h-1.5 bg-fcm-yellow mt-10" />
+          </motion.div>
         </div>
 
-        {/* Acordeón Derecha */}
-        <div className="lg:w-2/3 space-y-4">
+        {/* Acordeón Derecha - Minimalista y Fluido */}
+        <div className="lg:w-2/3">
           {faqs.map((faq, index) => (
-            <div 
+            <motion.div 
               key={index} 
-              className="bg-white rounded-lg shadow-sm border-l-4 border-fcm-yellow overflow-hidden transition-all duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className={`border-b border-gray-100 transition-colors duration-500 ${openIndex === index ? 'bg-gray-50/50' : ''}`}
             >
               <button 
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors"
+                className="w-full flex justify-between items-center py-8 text-left group"
               >
-                <span className="text-fcm-blue font-bold text-lg pr-4">{faq.question}</span>
-                <div className={`flex-shrink-0 w-6 h-6 rounded-full bg-fcm-yellow flex items-center justify-center text-fcm-blue font-bold transition-transform ${openIndex === index ? 'rotate-45' : ''}`}>
-                  <span className="text-xl">+</span>
+                <span className={`text-xl md:text-2xl font-black uppercase tracking-tight transition-colors duration-300 ${openIndex === index ? 'text-fcm-yellow' : 'text-fcm-blue group-hover:text-fcm-yellow/70'}`}>
+                  {faq.question}
+                </span>
+                
+                {/* Icono animado minimalista */}
+                <div className="relative flex-shrink-0 w-8 h-8 flex items-center justify-center">
+                  <div className={`absolute w-full h-0.5 bg-fcm-yellow transition-transform duration-500 ${openIndex === index ? 'rotate-180' : ''}`} />
+                  <div className={`absolute w-0.5 h-full bg-fcm-yellow transition-transform duration-500 ${openIndex === index ? 'rotate-90 opacity-0' : ''}`} />
                 </div>
               </button>
               
-              <div className={`px-6 transition-all duration-300 ease-in-out ${openIndex === index ? 'max-h-60 pb-6 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-                <p className="text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
-                  {faq.answer}
-                </p>
-              </div>
-            </div>
+              <AnimatePresence>
+                {openIndex === index && (
+                  <motion.div 
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="pb-10">
+                      <p className="text-gray-500 text-lg leading-relaxed max-w-2xl font-medium">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
         </div>
       </div>

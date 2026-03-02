@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HiArrowNarrowRight } from "react-icons/hi";
+import ConcreteBlock3D from "../ui/ConcreteBlock3D";
 
 export default function MiningContent() {
   return (
@@ -96,12 +97,12 @@ export default function MiningContent() {
 
             {/* Imagen del Ensayo */}
             <div className="pt-8">
-              <div className="relative h-64 rounded-xl overflow-hidden border border-gray-100 shadow-lg">
-                <Image src="/images/bloque.png" alt="Ensayo de tenacidad" fill className="object-contain bg-white p-4" />
-              </div>
-              <p className="text-center text-xs italic text-gray-400 mt-4 uppercase tracking-widest">
-                Ensayo de tenacidad en bloque reforzado con fibra.
-              </p>
+             <div className="bg-gray-50 rounded-xl overflow-hidden shadow-inner border border-gray-100">
+  <ConcreteBlock3D />
+  <p className="text-center text-xs text-gray-400 italic pb-4">
+    ENSAYO DE TENACIDAD EN BLOQUE REFORZADO CON FIBRA (VISTA 3D INTERACTIVA)
+  </p>
+</div>
             </div>
           </div>
         </div>

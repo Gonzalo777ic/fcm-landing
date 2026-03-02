@@ -28,7 +28,6 @@ export default function Navbar() {
     { name: "PRODUCTOS", href: "/productos", dropdown: productLinks },
     { name: "APLICACIONES", href: "/aplicaciones", dropdown: applicationLinks },
     { name: "DOCUMENTOS", href: "/documentos" },
-    { name: "PUBLICACIONES", href: "#publicaciones" },
   ];
 
   return (
@@ -77,7 +76,7 @@ export default function Navbar() {
             ))}
             
             <Link 
-              href="#contacto" 
+              href="/contacto" 
               className="bg-fcm-yellow text-fcm-blue px-6 py-2.5 rounded-sm font-black hover:bg-yellow-500 transition-all uppercase text-[11px] tracking-tighter shadow-md"
             >
               CONTÁCTANOS
@@ -153,7 +152,7 @@ export default function Navbar() {
           ))}
 
           <Link 
-            href="#contacto" 
+            href="/contacto" 
             onClick={() => setIsOpen(false)}
             className="bg-fcm-yellow text-fcm-blue px-6 py-4 rounded-sm text-center font-black uppercase tracking-widest mt-8 shadow-xl active:scale-95"
           >

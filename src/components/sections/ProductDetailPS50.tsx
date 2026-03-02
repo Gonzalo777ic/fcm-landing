@@ -1,5 +1,9 @@
+'use client';
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { HiOutlineShieldCheck, HiOutlineCube, HiOutlineChartBar } from "react-icons/hi";
 
 export default function ProductDetailPS50() {
   const technicalData = [
@@ -17,61 +21,71 @@ export default function ProductDetailPS50() {
   ];
 
   return (
-    // CAMBIO: Añadimos pt-20 aquí para empujar todo el contenido debajo del Navbar fijo
-    <section className="bg-white pb-20 pt-20"> 
-      
-      {/* Breadcrumb */}
-      {/* CAMBIO: Eliminamos mt-20 de este div para que se pegue al tope del contenedor padre */}
-      <div className="bg-gray-50 py-4 border-b border-gray-100">
-        <div className="container mx-auto px-6 md:px-12">
-          <nav className="text-[10px] font-bold uppercase tracking-[0.2em] flex gap-2">
-            <Link href="/" className="text-fcm-yellow hover:underline">Inicio</Link>
-            <span className="text-gray-400">/</span>
-            <Link href="/productos" className="text-fcm-yellow hover:underline">Productos</Link>
-            <span className="text-gray-400">/</span>
-            <span className="text-fcm-blue">Fibra PS50</span>
+    <section className="bg-white pb-32">
+      {/* 1. Header Integrado: Solución de continuidad visual con el Navbar */}
+      <div className="relative pt-32 pb-12 bg-fcm-blue overflow-hidden">
+        <Image 
+          src="/images/tunel.png" 
+          alt="Textura Industrial" 
+          fill 
+          className="object-cover opacity-10 grayscale"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-fcm-blue/80 to-fcm-blue" />
+        
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <nav className="text-[10px] font-black uppercase tracking-[0.4em] flex gap-3 text-white/40">
+            <Link href="/" className="hover:text-fcm-yellow transition-colors">Inicio</Link>
+            <span>/</span>
+            <Link href="/productos" className="hover:text-fcm-yellow transition-colors">Productos</Link>
+            <span>/</span>
+            <span className="text-fcm-yellow">PS50</span>
           </nav>
         </div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 pt-16">
-        <div className="flex flex-col lg:flex-row gap-16 items-start">
-          
-          {/* Columna Imagen con Estilo Industrial */}
-          <div className="lg:w-1/2 relative flex justify-center w-full">
-            <div className="relative w-full max-w-lg aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+      {/* 2. Cuerpo del Producto: Estilo Editorial */}
+      <div className="container mx-auto px-6 md:px-12 pt-20">
+        <div className="flex flex-col lg:flex-row gap-24 items-start mb-32">
+          {/* Visualización Premium */}
+          <div className="lg:w-1/2 relative group w-full">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="relative aspect-square w-full max-w-xl bg-gray-50 rounded-sm flex items-center justify-center p-12 overflow-hidden shadow-inner"
+            >
+              <div className="absolute inset-0 border-[1px] border-fcm-yellow/20 rounded-full scale-75 animate-pulse" />
               <Image 
                 src="/images/products/ps-50-60.png" 
-                alt="FIBRA PS50 Aplicación" 
-                fill 
-                className="object-cover"
+                alt="FIBRA PS50" 
+                fill
+                className="object-contain p-12 z-10 drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)]"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-fcm-blue/20 to-transparent" />
-            </div>
+            </motion.div>
           </div>
 
-          {/* Columna Info Principal */}
+          {/* Info Principal */}
           <div className="lg:w-1/2">
-            <h1 className="text-fcm-blue text-5xl font-black uppercase mb-2 tracking-tighter">FIBRA PS50</h1>
-            <h2 className="text-fcm-yellow text-xl font-bold uppercase tracking-[0.2em] mb-8">
+            <span className="text-fcm-yellow font-black tracking-[0.5em] text-[10px] mb-6 block uppercase">
               Macro fibra sintética para refuerzo estructural
-            </h2>
+            </span>
+            <h1 className="text-fcm-blue text-7xl md:text-9xl font-black uppercase mb-8 tracking-tighter leading-none relative">
+              FIBRA <br /> 
+              <span className="text-gray-100 absolute -bottom-4 md:-bottom-8 left-0 -z-10 opacity-50 uppercase">PS50</span>
+              <span className="relative z-10">PS50</span>
+            </h1>
             
-            <div className="space-y-6 text-gray-700 text-lg leading-relaxed mb-10">
+            <div className="space-y-6 text-xl text-gray-600 font-light leading-relaxed mb-10 max-w-lg border-l-4 border-fcm-yellow pl-8">
               <p>
-                Aporta <strong className="text-fcm-blue">mayor resistencia post-fisura</strong>, ductilidad y tenacidad, garantizando un refuerzo estructural eficiente con menor peso y costos de colocación.
+                Aporta <strong className="text-fcm-blue font-black uppercase">mayor resistencia post-fisura</strong>, ductilidad y tenacidad para un refuerzo estructural eficiente.
               </p>
-              <div className="bg-fcm-blue text-white p-6 rounded-sm border-l-8 border-fcm-yellow shadow-lg">
-                <p className="leading-relaxed">
-                  La <span className="font-bold text-fcm-yellow text-xl">PS50</span> es una fibra macro sintética desarrollada para <span className="uppercase font-bold tracking-tight">sustituir parcial o totalmente las mallas de acero</span> en concretos proyectados o pavimentos.
-                </p>
-              </div>
+              <p>
+                La <strong className="text-fcm-blue font-black uppercase text-lg italic">PS50</strong> está desarrollada para <strong className="text-fcm-blue font-black uppercase">sustituir mallas de acero</strong> en concretos proyectados o pavimentos.
+              </p>
             </div>
 
-            {/* Tags de Aplicación */}
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-3">
               {["Shotcrete Minero", "Túneles", "Pavimentos Industriales"].map((tag) => (
-                <span key={tag} className="bg-fcm-blue text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/10 shadow-md">
+                <span key={tag} className="bg-fcm-blue text-white px-5 py-2 text-[10px] font-black uppercase tracking-widest shadow-md">
                   {tag}
                 </span>
               ))}
@@ -79,61 +93,57 @@ export default function ProductDetailPS50() {
           </div>
         </div>
 
-        {/* Sección Técnica Inferior */}
-        <div className="mt-24 grid grid-cols-1 lg:grid-cols-2 gap-20 border-t border-gray-100 pt-20">
-          
-          <div className="space-y-12">
-            {/* Descripción */}
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-1.5 h-6 bg-fcm-yellow"></div>
-                <h3 className="text-fcm-blue text-xl font-bold uppercase">Descripción</h3>
-              </div>
-              <p className="text-gray-600 text-lg leading-relaxed italic border-l-2 border-gray-100 pl-6">
-                "La macro fibra sintética estructural para concreto PS50 se caracteriza por tener un excelente agarre con el concreto e incrementar notablemente la tenacidad. PS50 refuerza el concreto en 3 dimensiones."
-              </p>
-            </div>
-
-            {/* Aplicaciones */}
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-1.5 h-6 bg-fcm-yellow"></div>
-                <h3 className="text-fcm-blue text-xl font-bold uppercase">Aplicaciones</h3>
-              </div>
-              <ul className="space-y-4">
-                {[
-                  "Shotcrete en minería subterránea.",
-                  "Túneles y taludes.",
-                  "Pavimentos y losas industriales."
-                ].map((app, i) => (
-                  <li key={i} className="flex items-center gap-3 text-gray-700 font-medium">
-                    <span className="text-fcm-yellow text-xl">✓</span>
-                    {app}
-                  </li>
-                ))}
-              </ul>
-            </div>
+        {/* 3. Grid Técnico (Bento Box Industrial) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-gray-100 border border-gray-100 shadow-2xl overflow-hidden rounded-sm">
+          {/* Descripción & Valor */}
+          <div className="bg-white p-12">
+            <h3 className="text-fcm-blue text-xs font-black uppercase tracking-[0.3em] mb-10 flex items-center gap-3">
+              <HiOutlineShieldCheck className="text-fcm-yellow text-xl" /> Ingeniería 3D
+            </h3>
+            <p className="text-[11px] leading-relaxed text-gray-400 font-bold uppercase tracking-widest italic border-l-2 border-fcm-yellow/30 pl-4">
+              "La macro fibra PS50 se caracteriza por tener un excelente agarre con el concreto e incrementar notablemente la tenacidad, reforzando la matriz en 3 dimensiones."
+            </p>
           </div>
 
-          {/* Tabla Ficha Técnica */}
-          <div>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-1.5 h-6 bg-fcm-yellow"></div>
-              <h3 className="text-fcm-blue text-xl font-bold uppercase text-right">Ficha Técnica</h3>
-            </div>
-            <div className="grid grid-cols-1 gap-0 shadow-2xl rounded-xl overflow-hidden border border-gray-100">
+          {/* Aplicaciones */}
+          <div className="bg-white p-12">
+            <h3 className="text-fcm-blue text-xs font-black uppercase tracking-[0.3em] mb-10 flex items-center gap-3">
+              <HiOutlineCube className="text-fcm-yellow text-xl" /> Aplicaciones
+            </h3>
+            <ul className="space-y-6">
+              {[
+                "Shotcrete en minería subterránea.",
+                "Túneles y taludes.",
+                "Pavimentos y losas industriales.",
+              ].map((text, i) => (
+                <li key={i} className="flex gap-4 text-[11px] font-black text-gray-400 uppercase tracking-widest">
+                  <span className="text-fcm-yellow text-lg">/</span> {text}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Ficha Técnica Completa */}
+          <div className="bg-fcm-blue p-12 text-white">
+            <h3 className="text-fcm-yellow text-xs font-black uppercase tracking-[0.3em] mb-10 flex items-center gap-3">
+              <HiOutlineChartBar className="text-xl" /> Ficha Técnica
+            </h3>
+            <div className="space-y-3">
               {technicalData.map((data, i) => (
-                <div 
-                  key={i} 
-                  className={`flex justify-between items-center p-4 transition-colors hover:bg-fcm-yellow/5 ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
-                >
-                  <span className="font-bold text-fcm-blue uppercase text-xs tracking-wider">{data.label}</span>
-                  <span className="text-gray-600 text-sm font-medium">{data.value}</span>
+                <div key={i} className="flex justify-between border-b border-white/10 pb-2 text-[10px] uppercase tracking-[0.2em] font-black">
+                  <span className="text-white/40">{data.label}</span>
+                  <span className="text-fcm-yellow text-right">{data.value}</span>
                 </div>
               ))}
             </div>
+            <a 
+              href="/archives/fichas/ficha-tecnica-polystark-ps-50-g.pdf" 
+              target="_blank"
+              className="w-full mt-10 bg-fcm-yellow text-fcm-blue py-5 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-white transition-all block text-center shadow-lg shadow-black/20"
+            >
+              Descargar Ficha Técnica PDF
+            </a>
           </div>
-
         </div>
       </div>
     </section>

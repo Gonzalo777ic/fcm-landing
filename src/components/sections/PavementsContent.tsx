@@ -3,11 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HiArrowNarrowRight } from "react-icons/hi";
+import ConcreteBlock3D from "../ui/ConcreteBlock3D"; // Importamos el componente interactivo
 
 export default function PavementsContent() {
   return (
     <section className="bg-white pb-24">
-      {/* Breadcrumb */}
+      {/* Breadcrumb se mantiene igual */}
       <div className="bg-gray-50 py-4 border-b border-gray-100 mt-20">
         <div className="container mx-auto px-6 md:px-12 text-xs font-bold uppercase tracking-widest flex gap-2">
           <Link href="/" className="text-fcm-yellow hover:text-fcm-blue">Inicio</Link>
@@ -20,7 +21,6 @@ export default function PavementsContent() {
 
       <div className="container mx-auto px-6 md:px-12 pt-16">
         <div className="flex flex-col lg:flex-row gap-16 items-start mb-24">
-          {/* Imagen de Cabecera - Vaciado de Pavimento */}
           <div className="lg:w-1/2 w-full">
             <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
               <Image 
@@ -32,7 +32,6 @@ export default function PavementsContent() {
             </div>
           </div>
 
-          {/* Información Principal */}
           <div className="lg:w-1/2">
             <h1 className="text-fcm-blue text-5xl font-black uppercase mb-8">Pavimentos</h1>
             <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
@@ -49,10 +48,7 @@ export default function PavementsContent() {
           </div>
         </div>
 
-        {/* Grid Técnico */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 border-t border-gray-100 pt-20">
-          
-          {/* Aplicaciones Típicas y Beneficios */}
           <div className="space-y-16">
             <div>
               <div className="flex items-center gap-3 mb-8">
@@ -94,7 +90,6 @@ export default function PavementsContent() {
             </div>
           </div>
 
-          {/* Productos Recomendados e Imagen Técnica */}
           <div className="space-y-12">
             <div className="flex items-center gap-3">
               <div className="w-1.5 h-6 bg-fcm-yellow"></div>
@@ -118,11 +113,9 @@ export default function PavementsContent() {
               ))}
             </div>
 
-            {/* Imagen Técnica: Distribución Homogénea */}
+            {/* INTEGRACIÓN DEL COMPONENTE INTERACTIVO */}
             <div className="pt-8">
-              <div className="relative h-64 rounded-xl overflow-hidden border border-gray-100 shadow-lg bg-white p-4">
-                <Image src="/images/bloque.png" alt="Matriz de concreto" fill className="object-contain" />
-              </div>
+              <ConcreteBlock3D />
               <p className="text-center text-xs italic text-gray-400 mt-4 uppercase tracking-widest">
                 Distribución homogénea de fibra en la matriz de concreto.
               </p>
@@ -130,7 +123,7 @@ export default function PavementsContent() {
           </div>
         </div>
 
-        {/* Sección de Proyectos (Mosaico) */}
+        {/* Proyectos se mantiene igual */}
         <div className="mt-32">
           <div className="flex items-center gap-3 mb-12">
             <div className="w-1.5 h-6 bg-fcm-yellow"></div>
@@ -138,12 +131,10 @@ export default function PavementsContent() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[600px]">
-            {/* Imagen Grande de Pavimento */}
             <div className="md:col-span-2 relative rounded-2xl overflow-hidden shadow-lg group">
               <Image src="/images/vaciado.png" alt="Obra de Pavimentos" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
             </div>
-            {/* Columna de Imágenes Pequeñas */}
             <div className="flex flex-col gap-6">
               <div className="relative h-1/2 rounded-2xl overflow-hidden shadow-lg group">
                 <Image src="/images/tunel.png" alt="Infraestructura" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />

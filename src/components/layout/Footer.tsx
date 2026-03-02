@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaFacebookF, FaLinkedinIn } from "react-icons/fa"; // Necesitarás instalar react-icons
+import { FaFacebookF, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -29,12 +29,23 @@ export default function Footer() {
         {/* Sección Media: Teléfonos, Horario y Redes */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16 items-start">
           
-          {/* Teléfonos */}
+          {/* Teléfonos con Enlace a WhatsApp */}
           <div>
             <h4 className="font-bold uppercase tracking-widest text-xs mb-4">Nuestros Teléfonos</h4>
             <div className="text-lg space-y-1">
-              <p>+51 905 437 077</p>
-              <p>+51 1 480 0034</p>
+              {/* Enlace para el primer celular */}
+              <a 
+                href="https://wa.me/51905437077?text=Hola%20FCM,%20deseo%20información%20sobre%20sus%20productos." 
+                target="_blank"
+                className="flex items-center gap-2 hover:opacity-70 transition-all"
+              >
+                <FaWhatsapp className="text-xl" /> +51 905 437 077
+              </a>
+              {/* Enlace para el segundo número (Fijo o Celular) */}
+              <a 
+              >
+                +51 1 480 0034
+              </a>
             </div>
           </div>
 
@@ -72,11 +83,11 @@ export default function Footer() {
         {/* Línea Divisoria Punteada */}
         <div className="border-t border-dashed border-[#0A3B4B]/30 pt-8">
           <nav className="flex flex-wrap gap-x-8 gap-y-4 text-sm font-bold uppercase tracking-widest">
-            <Link href="#nosotros" className="hover:opacity-70 transition">Nosotros</Link>
-            <Link href="#productos" className="hover:opacity-70 transition">Productos ˅</Link>
-            <Link href="#aplicaciones" className="hover:opacity-70 transition">Aplicaciones ˅</Link>
-            <Link href="#documentos" className="hover:opacity-70 transition">Documentos</Link>
-            <Link href="#publicaciones" className="hover:opacity-70 transition">Publicaciones</Link>
+            <Link href="/nosotros" className="hover:opacity-70 transition">Nosotros</Link>
+            <Link href="/productos" className="hover:opacity-70 transition">Productos</Link>
+            <Link href="/aplicaciones" className="hover:opacity-70 transition">Aplicaciones</Link>
+            <Link href="/documentos" className="hover:opacity-70 transition">Documentos</Link>
+            {/* PUBLICACIONES ELIMINADO CORRECTAMENTE */}
           </nav>
         </div>
       </div>

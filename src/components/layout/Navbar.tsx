@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -32,15 +32,18 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-[#002B36] w-full z-[100] sticky top-0 border-b border-white/10 h-20 flex items-center">
+      <nav className="bg-[#002B36] w-full z-[100] sticky top-0 border-none shadow-none h-20 flex items-center">
+        {" "}
         <div className="container mx-auto px-4 md:px-8 py-3 flex justify-between items-center">
-          
           {/* Logo Principal */}
-          <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+          <Link
+            href="/"
+            className="flex items-center hover:opacity-80 transition-opacity"
+          >
             <Image
-              src="/images/logo_blanco.png" 
+              src="/images/logo_blanco.png"
               alt="FCM Logo"
-              width={140} 
+              width={140}
               height={50}
               className="object-contain"
               priority
@@ -51,11 +54,14 @@ export default function Navbar() {
           <div className="hidden lg:flex space-x-8 items-center text-[11px] font-bold tracking-[0.15em] text-white/90">
             {navLinks.map((link) => (
               <div key={link.name} className="relative group py-4">
-                <Link 
-                  href={link.href} 
+                <Link
+                  href={link.href}
                   className="hover:text-fcm-yellow transition-colors flex items-center gap-1 uppercase"
                 >
-                  {link.name} {link.dropdown && <HiChevronDown className="text-fcm-yellow group-hover:rotate-180 transition-transform" />}
+                  {link.name}{" "}
+                  {link.dropdown && (
+                    <HiChevronDown className="text-fcm-yellow group-hover:rotate-180 transition-transform" />
+                  )}
                 </Link>
 
                 {/* Dropdown Menu Desktop */}
@@ -74,9 +80,9 @@ export default function Navbar() {
                 )}
               </div>
             ))}
-            
-            <Link 
-              href="/contacto" 
+
+            <Link
+              href="/contacto"
               className="bg-fcm-yellow text-fcm-blue px-6 py-2.5 rounded-sm font-black hover:bg-yellow-500 transition-all uppercase text-[11px] tracking-tighter shadow-md"
             >
               CONTÁCTANOS
@@ -85,7 +91,7 @@ export default function Navbar() {
 
           {/* Mobile Toggle Button */}
           <div className="lg:hidden flex items-center">
-            <button 
+            <button
               onClick={toggleMenu}
               className="text-white p-2 hover:bg-white/5 rounded-full transition-colors"
             >
@@ -97,26 +103,31 @@ export default function Navbar() {
 
       {/* --- SIDEBAR MOBILE --- */}
       {/* Background Overlay */}
-      <div 
+      <div
         className={`fixed inset-0 bg-black/60 z-[110] transition-opacity duration-300 lg:hidden ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
         onClick={toggleMenu}
       />
 
       {/* Sidebar Content */}
-      <div className={`
+      <div
+        className={`
         fixed top-0 right-0 h-full w-[80%] max-w-sm bg-[#002B36] z-[120] transform transition-transform duration-500 ease-in-out lg:hidden border-l border-white/10 shadow-2xl
         ${isOpen ? "translate-x-0" : "translate-x-full"}
-      `}>
+      `}
+      >
         {/* Sidebar Header */}
         <div className="flex justify-between items-center p-6 border-b border-white/10 bg-black/10">
           <Image
-            src="/images/logo_blanco.png" 
+            src="/images/logo_blanco.png"
             alt="FCM Logo"
-            width={110} 
+            width={110}
             height={40}
             className="object-contain"
           />
-          <button onClick={toggleMenu} className="text-fcm-yellow p-2 hover:bg-white/5 rounded-full transition-colors">
+          <button
+            onClick={toggleMenu}
+            className="text-fcm-yellow p-2 hover:bg-white/5 rounded-full transition-colors"
+          >
             <HiX size={32} />
           </button>
         </div>
@@ -125,14 +136,14 @@ export default function Navbar() {
         <div className="flex flex-col p-8 space-y-6 overflow-y-auto h-[calc(100%-80px)]">
           {navLinks.map((link) => (
             <div key={link.name} className="flex flex-col space-y-4">
-              <Link 
-                href={link.href} 
+              <Link
+                href={link.href}
                 onClick={() => !link.dropdown && setIsOpen(false)}
                 className="text-white text-lg font-black tracking-widest hover:text-fcm-yellow transition-colors border-b border-white/5 pb-2 uppercase"
               >
                 {link.name}
               </Link>
-              
+
               {/* Sub-enlaces en móvil */}
               {link.dropdown && (
                 <div className="pl-4 flex flex-col space-y-3">
@@ -151,8 +162,8 @@ export default function Navbar() {
             </div>
           ))}
 
-          <Link 
-            href="/contacto" 
+          <Link
+            href="/contacto"
             onClick={() => setIsOpen(false)}
             className="bg-fcm-yellow text-fcm-blue px-6 py-4 rounded-sm text-center font-black uppercase tracking-widest mt-8 shadow-xl active:scale-95"
           >

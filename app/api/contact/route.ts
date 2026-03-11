@@ -16,7 +16,7 @@ export async function POST(req: Request) {
 
     await resend.emails.send({
       from: 'Web FCM <onboarding@resend.dev>',
-      to: ['megelmi@gmail.com'],
+      to: ['mgelmi@gmail.com'],
       subject: `Nuevo mensaje de: ${nombre}`,
       replyTo: email,
       html: `
